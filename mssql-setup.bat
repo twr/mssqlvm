@@ -1,6 +1,10 @@
-rem dependencies
-rem 7z
-rem curl
+@echo off
+
+rem dependencies required to be present in the same folder as this script
+rem ---
+rem 7z922.exe
+rem curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip
+rem ---
 
 set WORK_DIR=C:\mssql-setup
 mkdir %WORK_DIR%
@@ -46,8 +50,8 @@ netsh firewall add allowedprogram "C:\MSSQL2000\MSSQL$DEVDB\Binn\sqlservr.exe" "
 echo Start database
 net start "MSSQL$DEVDB"
 
-echo check IP
-ipconfig
+echo Set static IP for host-only interface
+netsh interface ip set address name="Local Area Connection 2" static 192.168.56.101 255.255.255.0
 
 echo Setup complete
-echo Database[port=1433, user=sa, password=devadmin]
+echo Database[ip=192.168.56.101, port=1433, user=sa, password=devadmin]
