@@ -8,11 +8,11 @@ cd %WORK_DIR%
 
 set DESKTOP_DIR=%~p0
 
-copy "%DESKTOP_DIR%\7z922.exe" %WORK_DIR%\
-copy "%DESKTOP_DIR%\curl-7.29.0.zip" %WORK_DIR%\
+copy "%DESKTOP_DIR%7z922.exe" %WORK_DIR%\
+copy "%DESKTOP_DIR%curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip" %WORK_DIR%\
 
 7z922.exe /S
-"%ProgramFiles%\7-Zip\7z.exe" x curl-7.29.0.zip
+"%ProgramFiles%\7-Zip\7z.exe" x curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip
 
 set "CURL_BIN=%WORK_DIR%\curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32"
 
