@@ -1,6 +1,6 @@
 Overview
 --------
-Quick and easy setup of Microsoft SQL Server 2000 Desktop Engine on Windows XP vm in VirtualBox.
+Quick and easy setup of Microsoft SQL Server 2000 Desktop Engine on Windows XP vm in VirtualBox on Mac OS X (and possibly linux, but not tested).
 
 Installation of Microsoft SQL Server Management Studio Express.
 
@@ -13,14 +13,19 @@ clone repository and execute ```mssqlvm.sh``` or simply execute
 ```curl -s https://raw.github.com/twr/mssqlvm/master/mssqlvm.sh | bash```
 
 
+Installation
+------------
+At one point VirtualBox can go full screen. When this happens press Cmd+F to go out.
+
+
 Database details
 ----------------
 If everything goes ok, it should be possible to connect to db on the vm from host using:
 
-IP: 192.168.56.101,
-port: 1433,
-user: sa,
-password: devadmin,
+ * IP: 192.168.56.101,
+ * port: 1433,
+ * user: sa,
+ * password: devadmin
 
 
 Dependencies
