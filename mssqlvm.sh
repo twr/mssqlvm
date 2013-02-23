@@ -28,7 +28,7 @@ log "Downloading 7-zip"
 curl -L http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.exe/download -o 7z922.exe
 
 log "Downloading curl"
-curl -L -O http://dl.dropbox.com/u/616497/dbs/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip
+curl -L -O http://curl.haxx.se/gknw.net/7.29.0/dist-w32/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip
 
 log "Downloading mssql-setup.bat"
 curl -L -O https://raw.github.com/twr/mssqlvm/master/mssql-setup.bat
