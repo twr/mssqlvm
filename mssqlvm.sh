@@ -4,6 +4,9 @@ set -o nounset
 set -o errtrace
 set -o errexit
 set -o pipefail
+username="IEUser"
+# Add password due to https://github.com/xdissent/ievms/issues/129#issuecomment-29551990
+password="Passw0rd!"
 
 log()  { printf "$*\n" ; return $? ;  }
 
@@ -53,15 +56,15 @@ download_files_to_vm() {
   log "Waiting for ${vm} to be available for guestcontrol..."
   x="1" ; until [ "${x}" == "0" ]; do
     sleep "${sleep_wait}"
-    VBoxManage guestcontrol "${vm}" cp `pwd`"/7z922.exe" "${guest_loc}/7z922.exe" --username IEUser --dryrun && x=$? || x=$?
+    VBoxManage guestcontrol "${vm}" cp `pwd`"/7z922.exe" "${guest_loc}/7z922.exe" --username ${username} --password ${password} --dryrun && x=$? || x=$?
   done
 
   sleep "${sleep_wait}"
 
   log "Copying files to the VM"
-  VBoxManage guestcontrol "${vm}" cp `pwd`"/7z922.exe" "${guest_loc}/7z922.exe" --username IEUser
-  VBoxManage guestcontrol "${vm}" cp `pwd`"/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip" "${guest_loc}/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip" --username IEUser
-  VBoxManage guestcontrol "${vm}" cp `pwd`"/mssql-setup.bat" "${guest_loc}/mssql-setup.bat" --username IEUser
+  VBoxManage guestcontrol "${vm}" cp `pwd`"/7z922.exe" "${guest_loc}/7z922.exe" --username ${username} --password ${password}
+  VBoxManage guestcontrol "${vm}" cp `pwd`"/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip" "${guest_loc}/curl-7.29.0-rtmp-ssh2-ssl-sspi-zlib-idn-static-bin-w32.zip" --username ${username} --password ${password}
+  VBoxManage guestcontrol "${vm}" cp `pwd`"/mssql-setup.bat" "${guest_loc}/mssql-setup.bat" --username ${username} --password ${password}
 }
 
 mssqlvm_home="${HOME}/.mssqlvm"
@@ -82,10 +85,10 @@ VBoxManage modifyvm "${vm}" --clipboard bidirectional
 download_files_to_vm
 
 log "Setting up database on the VM (may take a while)"
-VBoxManage guestcontrol "${vm}" exec --image "${guest_loc}/mssql-setup.bat" --username IEUser --wait-exit
+VBoxManage guestcontrol "${vm}" exec --image "${guest_loc}/mssql-setup.bat" --username ${username} --password ${password} --wait-exit
 
 log "Shutting down VM ${vm}"
-VBoxManage guestcontrol "${vm}" exec --image "/WINDOWS/system32/shutdown.exe" --username IEUser --wait-exit -- -s -f -t 0
+VBoxManage guestcontrol "${vm}" exec --image "/WINDOWS/system32/shutdown.exe" --username ${username} --password ${password} --wait-exit -- -s -f -t 0
 
 sleep_wait="10"
 log "Waiting for ${vm} to shutdown..."
