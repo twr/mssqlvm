@@ -10,6 +10,8 @@ Two snapshots are taken - before and after configuration of DB on the VM. This c
 
 It uses Windows XP image from http://www.modern.ie/ that is valid for max 90 days.
 
+Password for Windows user account ```IEUser``` is ```Passw0rd!```.
+
 
 Usage
 -----
